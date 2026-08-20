@@ -1,5 +1,5 @@
 import { useLanguage } from '../i18n/LanguageContext'
-import Terminal from './Terminal'
+// import Terminal from './Terminal'
 
 export default function Hero() {
   const { t } = useLanguage()
@@ -23,14 +23,7 @@ export default function Hero() {
             </a>
           </div>
         </div>
-
-        <div className="hero__side">
-          {/* <div className="hero__avatar">
-            <img src="/salma.png" alt="Salma Ahmed" />
-          </div> */}
-          <Terminal lines={h.terminal} />
-        </div>
-      </div>
+      </div>  
 
       <style>{`
         .hero {
@@ -53,13 +46,14 @@ export default function Hero() {
           margin-block: 0.5rem 0.15rem;
         } 
         .hero__role {
-          font-family: var(--font-mono);
+          font-family: "Playwrite DE LA Guides", cursive;
           font-size: 1.05rem;
           color: var(--accent-ink);
           margin-bottom: 1.1rem;
         }
         html[dir='rtl'] .hero__role { font-family: var(--font-arabic); font-weight: 700; }
         .hero__tagline {
+          font-family: "Playwrite DE LA Guides", cursive;
           font-size: 1.08rem;
           color: var(--ink-soft);
           max-width: 42ch;
