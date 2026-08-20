@@ -1,0 +1,568 @@
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+
+:root {
+  --bg: #0e1016;
+  --surface: #161922;
+  --surface-sunken: #0e1016;
+  --border: #252a36;
+  --border-strong: #353d52;
+
+  --ink: #e8eaf0;
+  --ink-soft: #9099b0;
+  --ink-faint: #5a6278;
+
+  --accent: #07524e;
+  --accent-ink: #118181;
+  --accent-tint: #1a3c40;
+
+  --status: #34c97a;
+  --status-tint: #0f2a1c;
+
+  --signal: #e09e3a;
+  --signal-tint: #2a1f08;
+
+  --code-bg: #0b0d12;
+  --code-ink: #d9dfea;
+  --code-accent: #8fb2ff;
+  --code-status: #6fdda0;
+  --code-faint: #6b7284;
+
+  --font-display: 'Space Grotesk', 'Segoe UI', sans-serif;
+  --font-body: 'Inter', 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-arabic: 'Tajawal', 'Segoe UI', sans-serif;
+
+  --container: 1120px;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+  --space-6: 6.5rem;
+
+  color-scheme: dark;
+}
+
+/* ============================================================
+   RESET
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--bg);
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  max-width: 100%;
+  overflow-x: hidden;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+@supports not (overflow: clip) {
+  #root {
+    overflow-x: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
+}
+
+h1 {
+  font-size: clamp(2.75rem, 7vw, 4.6rem);
+  line-height: 1.02;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.08;
+}
+
+h3 {
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+  line-height: 1.2;
+}
+
+p {
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+img,
+svg,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+pre,
+code {
+  max-width: 100%;
+}
+
+pre {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-3);
+}
+
+.section {
+  padding-block: var(--space-6);
+  scroll-margin-top: 80px;
+}
+
+.section--tight {
+  padding-block: var(--space-5);
+  scroll-margin-top: 80px;
+}
+
+/* ============================================================
+   TEXT HELPERS
+   ============================================================ */
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+html[dir='rtl'] .eyebrow {
+  font-family: var(--font-mono);
+  text-transform: none;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--accent-ink);
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.text-soft {
+  color: var(--ink-soft);
+}
+
+.text-faint {
+  color: var(--ink-faint);
+}
+
+/* ============================================================
+   BUTTONS / TAGS
+   ============================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+
+  min-height: 44px;
+  padding: 0.75em 1.4em;
+
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 500;
+
+  text-align: center;
+  white-space: normal;
+
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+html[dir='rtl'] .btn {
+  font-family: var(--font-arabic);
+  font-weight: 700;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn:focus-visible,
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent-ink);
+  outline-offset: 3px;
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn--primary:hover {
+  background: var(--accent-ink);
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: var(--border-strong);
+  color: var(--ink);
+}
+
+.btn--ghost:hover {
+  border-color: var(--ink-soft);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+
+  padding: 0.3em 0.75em;
+
+  border: 1px solid var(--border);
+  border-radius: 999px;
+
+  background: var(--surface-sunken);
+  color: var(--ink-soft);
+
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+
+  overflow-wrap: anywhere;
+}
+
+.tag--accent {
+  background: var(--accent-tint);
+  color: var(--accent-ink);
+  border-color: transparent;
+}
+
+.tag--status {
+  background: var(--status-tint);
+  color: var(--status);
+  border-color: transparent;
+}
+
+.tag--signal {
+  background: var(--signal-tint);
+  color: var(--signal);
+  border-color: transparent;
+}
+
+/* ============================================================
+   CARDS
+   ============================================================ */
+
+.card {
+  min-width: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3);
+}
+
+/* ============================================================
+   REVEAL ON SCROLL
+   ============================================================ */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ============================================================
+   GRIDS
+   ============================================================ */
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+/*
+  Useful for project/skill/card grids.
+  Existing components can use this class if needed.
+*/
+.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, 300px), 1fr)
+  );
+  gap: var(--space-3);
+}
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 900px) {
+  :root {
+    --space-6: 5rem;
+    --space-5: 3.25rem;
+  }
+
+  .container {
+    padding-inline: 1.5rem;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    scroll-margin-top: 72px;
+  }
+
+  .section--tight {
+    scroll-margin-top: 72px;
+  }
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 720px) {
+  :root {
+    --space-3: 1.15rem;
+    --space-4: 2rem;
+    --space-5: 3rem;
+    --space-6: 4.5rem;
+  }
+
+  .container {
+    padding-inline: 1rem;
+  }
+
+  .section {
+    padding-block: var(--space-5);
+    scroll-margin-top: 64px;
+  }
+
+  .section--tight {
+    padding-block: var(--space-4);
+    scroll-margin-top: 64px;
+  }
+
+  .eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.045em;
+  }
+
+  .btn {
+    min-height: 46px;
+    padding-inline: 1.1rem;
+  }
+
+  .card {
+    padding: 1.15rem;
+    border-radius: var(--radius-md);
+  }
+
+  .grid-auto {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 480px) {
+  body {
+    font-size: 15px;
+  }
+
+  .container {
+    padding-inline: 0.85rem;
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 14vw, 3.4rem);
+  }
+
+  h2 {
+    font-size: clamp(1.8rem, 9vw, 2.4rem);
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  .section {
+    padding-block: 2.75rem;
+  }
+
+  .section--tight {
+    padding-block: 2rem;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+/* ============================================================
+   VERY SMALL DEVICES
+   ============================================================ */
+
+@media (max-width: 360px) {
+  .container {
+    padding-inline: 0.75rem;
+  }
+
+  .eyebrow {
+    font-size: 0.68rem;
+  }
+
+  .btn {
+    font-size: 0.82rem;
+  }
+}
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 8px;
+  border: 2px solid var(--bg);
+}
+
+/* Firefox */
+* {
+  scrollbar-color: var(--border-strong) var(--bg);
+  scrollbar-width: thin;
+}
