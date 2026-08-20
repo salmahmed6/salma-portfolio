@@ -44,10 +44,14 @@ export default function Hero() {
         }
         .hero__copy { max-width: 46ch; }
         .hero__name {
+          font-family: "Playwrite DE LA Guides", cursive;
+          font-weight: 400;
+          font-style: normal;
+
           font-size: clamp(2.6rem, 6vw, 4.6rem);
           line-height: 1.02;
           margin-block: 0.5rem 0.15rem;
-        }
+        } 
         .hero__role {
           font-family: var(--font-mono);
           font-size: 1.05rem;

@@ -22,10 +22,10 @@ export const content = {
       name: 'Salma Ahmed',
       role: 'Software Engineer Backend Developer',
       tagline:
-        "I design and ship multi-tenant SaaS systems end-to-end — architecture, payments, and everything that isn't allowed to fail in production.",
+        "From a blank repo to a production-ready product — I design the architecture, build the backend, connect the pieces, and make it ready to scale.",
       terminal: [
         { cmd: 'whoami', out: 'Salma Ahmed — Software Engineer Backend Developer' },
-        { cmd: 'currently', out: 'Building Ordex, a multi-tenant commerce OS, at Share Adawli' },
+        { cmd: 'currently', out: 'Building Ordex, a multi-tenant commerce OS' },
         { cmd: 'based_in', out: 'Cairo, Egypt' },
       ],
       ctaPrimary: 'View projects',
@@ -36,8 +36,8 @@ export const content = {
       heading: "I build the parts of a SaaS product that aren't allowed to fail.",
       paragraphs: [
         "Two years in, I've owned systems most engineers only touch pieces of — tenant isolation, subscription billing, payment webhooks, role-based access. I like the parts of backend work where a mistake is expensive: money, auth, data integrity.",
-        "My reference project is Ordex, a multi-tenant commerce platform I designed and built solo — from the database schema to the admin panel. It taught me how much of \"architecture\" is really about anticipating failure: what happens when a webhook arrives twice, when a tenant's plan expires mid-request, when a payment provider goes down.",
-        "Outside product work, I maintain an open-source auth package on npm, and I'm currently deepening my ML fundamentals through an AWS-sponsored AI & ML Scholars program.",
+        "A project I'm especially proud of is Ordex, a multi-tenant commerce platform I built mostly on my own. I worked on everything from the database and backend architecture to the frontend, admin panel, payments, and deployment. It taught me that good architecture isn't just about choosing the right technology — it's about thinking ahead about what can go wrong. What if a payment webhook comes twice? What if a subscription expires at the wrong time? What happens when a service goes down?",
+        "Outside product work, I'm currently deepening my ML fundamentals through an AWS-sponsored AI & ML Scholars program.",
       ],
     },
     experience: {
@@ -46,9 +46,9 @@ export const content = {
       items: [
         {
           company: 'Share Adawli',
-          role: 'Backend Developer',
-          period: 'Feb 2026 — Present',
-          location: 'Jeddah, KSA · Remote',
+          role: 'Software Developer',
+          period: 'Feb 2026 — Aug 2026',
+          location: 'Jeddah, Saudi Arabi · Remote',
           points: [
             'Architected the backend for Zumra, an automated candidate-matching platform, using NestJS.',
             'Resolved critical vulnerabilities in the HyperPay payment gateway — transaction security, 3DS2, webhook reliability.',
@@ -57,7 +57,7 @@ export const content = {
         },
         {
           company: 'Runsoft',
-          role: 'Back-end Developer',
+          role: 'Backend Developer',
           period: 'Feb 2025 — Dec 2025',
           location: 'Cairo, Egypt',
           points: [
@@ -249,7 +249,7 @@ export const content = {
     contact: {
       eyebrow: 'Contact',
       heading: "Let's talk",
-      text: 'Open to backend and full-stack roles — especially teams shipping multi-tenant SaaS or payment-heavy products.',
+      // text: 'Open to backend and full-stack roles',
       email: 'salmaahmedali924@gmail.com',
       emailCta: 'Send an email',
       links: [
