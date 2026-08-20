@@ -53,7 +53,6 @@ export default function Hero() {
         }
         html[dir='rtl'] .hero__role { font-family: var(--font-arabic); font-weight: 700; }
         .hero__tagline {
-          font-family: "Playwrite DE LA Guides", cursive;
           font-size: 1.08rem;
           color: var(--ink-soft);
           max-width: 42ch;
