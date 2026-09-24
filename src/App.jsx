@@ -69,6 +69,13 @@ function VisitorPopup() {
 
 export default function App() {
   const containerRef = useReveal()
+  const [visitorNumber, setVisitorNumber] = useState(null)
+  useEffect(() => {
+    fetch('/api/visitor', { credentials: 'include' })
+      .then((response) => response.ok ? response.json() : Promise.reject(new Error('Visitor counter unavailable')))
+      .then(({ count }) => setVisitorNumber(Number(count) || 0))
+      .catch(() => setVisitorNumber(null))
+  }, [])
   const [theme, setTheme] = useState(() => {
     try { return localStorage.getItem('portfolio-theme') || 'dark' } catch { return 'dark' }
   })
@@ -80,7 +87,7 @@ export default function App() {
     <div ref={containerRef}>
       <Nav theme={theme} onToggleTheme={() => setTheme(v => v === 'dark' ? 'light' : 'dark')} />
       <main><Hero /><About /><Education /><Experience /><Journey /><Projects /><Skills /><Contact /></main>
-      <Footer /><StatusBar />
+      <Footer /><StatusBar visitorNumber={visitorNumber} />
       <VisitorPopup />
     </div>
   )
