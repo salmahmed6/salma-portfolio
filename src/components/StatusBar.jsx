@@ -1,7 +1,7 @@
 import { useLanguage } from '../i18n/LanguageContext'
 import { useClock } from '../hooks/useClock'
 
-export default function StatusBar() {
+export default function StatusBar({ visitorNumber }) {
   const { t } = useLanguage()
   const time = useClock()
 
@@ -14,6 +14,7 @@ export default function StatusBar() {
         </span>
         <span className="statusbar__group statusbar__group--right">
           <span>{t.statusBar.locationLabel}</span>
+          {visitorNumber !== null && <><span className="statusbar__sep">·</span><span>{t.statusBar.visitors} {visitorNumber}</span></>}
           <span className="statusbar__sep">·</span>
           <span className="statusbar__time">
             {time}
