@@ -1,34 +1,23 @@
-import { createContext, useContext, useEffect } from 'react'
-import { content } from './content'
+import { createContext, useContext, useEffect, useState } from 'react'
+import { content, languages } from './content'
 
 const LanguageContext = createContext(null)
 
-// Arabic is disabled for now (English-only site). The full Arabic content
-// still lives in ./content.js so it can be switched back on later --
-// this just locks the app to English and ignores any stale language
-// choice a visitor's browser may have saved from earlier testing.
-const LOCKED_LANG = 'en'
-
 export function LanguageProvider({ children }) {
-  const t = content[LOCKED_LANG]
+  const [lang, setLang] = useState(() => {
+    try { return localStorage.getItem('portfolio-lang') || 'en' } catch { return 'en' }
+  })
+  const t = content[lang] || content.en
 
   useEffect(() => {
-    document.documentElement.lang = LOCKED_LANG
-    document.documentElement.dir = 'ltr'
-    // clear any old saved language choice so it can never silently
-    // switch the site to Arabic again
-    try {
-      localStorage.removeItem('portfolio-lang')
-    } catch {
-      /* localStorage unavailable — ignore */
-    }
-  }, [])
+    document.documentElement.lang = lang
+    document.documentElement.dir = t.meta.dir
+    try { localStorage.setItem('portfolio-lang', lang) } catch {}
+  }, [lang, t.meta.dir])
 
-  return (
-    <LanguageContext.Provider value={{ lang: LOCKED_LANG, t }}>
-      {children}
-    </LanguageContext.Provider>
-  )
+  const toggleLanguage = () => setLang(current => languages[(languages.indexOf(current) + 1) % languages.length])
+
+  return <LanguageContext.Provider value={{ lang, t, setLang, toggleLanguage }}>{children}</LanguageContext.Provider>
 }
 
 export function useLanguage() {
