@@ -13,9 +13,6 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import { useReveal } from './hooks/useReveal'
 
-const VISITOR_KEY = 'salma-portfolio-visitor-count'
-const VISITOR_SESSION_KEY = 'salma-portfolio-visitor-session'
-
 function VisitorPopup() {
   const { t } = useLanguage()
   const v = t.visitor
@@ -24,32 +21,34 @@ function VisitorPopup() {
   const [hiding, setHiding] = useState(false)
 
   useEffect(() => {
-    let next = 1
-    try {
-      const countedThisSession = sessionStorage.getItem(VISITOR_SESSION_KEY)
-      if (!countedThisSession) {
-        const current = Number(localStorage.getItem(VISITOR_KEY) || '0')
-        next = Math.max(1, current + 1)
-        localStorage.setItem(VISITOR_KEY, String(next))
-        sessionStorage.setItem(VISITOR_SESSION_KEY, '1')
-      } else {
-        next = Math.max(1, Number(localStorage.getItem(VISITOR_KEY) || '1'))
-      }
-    } catch {
-      next = 1
-    }
+    let cancelled = false
 
-    setNumber(next)
+    fetch('/api/visitor', { credentials: 'include' })
+      .then((response) => {
+        if (!response.ok) throw new Error('Visitor counter unavailable')
+        return response.json()
+      })
+      .then(({ count }) => {
+        if (!cancelled) setNumber(Number(count) || 0)
+      })
+      .catch(() => {
+        if (!cancelled) setNumber(null)
+      })
+
+    return () => { cancelled = true }
+  }, [])
+
+  useEffect(() => {
+    if (number === null) return
     const showTimer = window.setTimeout(() => setVisible(true), 900)
     const hideTimer = window.setTimeout(() => setHiding(true), 6000)
     const removeTimer = window.setTimeout(() => setVisible(false), 6450)
-
     return () => {
       window.clearTimeout(showTimer)
       window.clearTimeout(hideTimer)
       window.clearTimeout(removeTimer)
     }
-  }, [])
+  }, [number])
 
   const close = () => {
     setHiding(true)
@@ -59,7 +58,7 @@ function VisitorPopup() {
   if (!visible || number === null) return null
 
   return (
-    <aside className={`visitor-popup ${hiding ? 'visitor-popup--hiding' : ''}`} role="status" aria-live="polite">
+    <aside className={\`visitor-popup \${hiding ? 'visitor-popup--hiding' : ''}\`} role="status" aria-live="polite">
       <button className="visitor-popup__close" type="button" onClick={close} aria-label={v.close}>×</button>
       <span className="visitor-popup__label">{v.label}</span>
       <strong className="visitor-popup__number">{String(number).padStart(3, '0')}</strong>
