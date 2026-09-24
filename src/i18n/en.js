@@ -34,6 +34,7 @@ const en = {
     {title:'Languages',items:['JavaScript','TypeScript','Python','PHP','SQL','C++']},{title:'Backend',items:['Node.js','Express.js','NestJS','Laravel','REST APIs','WebSockets','JWT','OAuth2','RBAC']},{title:'Frontend',items:['React','Next.js','Vite','Tailwind CSS','HTML','CSS','React Query','Zustand','Zod']},{title:'Databases & Data',items:['PostgreSQL','MySQL','MongoDB','Redis','BullMQ','Prisma','TypeORM','Eloquent ORM']},{title:'DevOps & Infrastructure',items:['Docker','Git','GitHub Actions','CI/CD','PM2','AWS','Linux','Cloudinary']},{title:'AI / ML / Automation',items:['OpenAI API','Google Gemini','AWS AI & ML','ML fundamentals','MLOps','n8n','Workflow automation']},{title:'Architecture & Practice',items:['Multi-tenancy','SaaS architecture','System design','Payment integrations','Agile','API design','HMAC webhooks']}
   ]},
   contact:{eyebrow:'Contact',heading:"Let's talk",text:'Open to backend and full-stack opportunities.',email:'salmaahmedali924@gmail.com',emailCta:'Send an email',links:[{label:'LinkedIn',href:'https://www.linkedin.com/in/salma-ahmed-988880221/'},{label:'GitHub',href:'https://github.com/salmahmed6'},{label:'X / Twitter',href:'https://x.com/Saloma8_'}]},
+  statusBar:{prompt:'status:',status:'available for opportunities',locationLabel:'EGYPT · REMOTE'},
   footer:{text:'Designed & built by Salma Ahmed',backToTop:'Back to top'}
 }
 export default en
