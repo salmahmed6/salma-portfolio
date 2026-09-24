@@ -52,7 +52,7 @@ function VisitorPopup({ number }) {
   if (!visible || number === null) return null
 
   return (
-    <aside className={\`visitor-popup \${hiding ? 'visitor-popup--hiding' : ''}\`} role="status" aria-live="polite">
+    <aside className={`visitor-popup ${hiding ? 'visitor-popup--hiding' : ''}`} role="status" aria-live="polite">
       <button className="visitor-popup__close" type="button" onClick={close} aria-label={v.close}>×</button>
       <span className="visitor-popup__label">{v.label}</span>
       <strong className="visitor-popup__number">{String(displayNumber).padStart(3, '0')}</strong>
