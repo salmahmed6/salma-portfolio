@@ -596,3 +596,6 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;opacity:.22;b
 
 :root[data-theme='light'] .nav__panel{background:rgba(245,242,235,.97)}
 :root[data-theme='dark'] .nav__panel{background:rgba(9,9,9,.97)}
+
+
+.visitor-popup{position:fixed;right:24px;bottom:72px;z-index:50;width:min(280px,calc(100vw - 32px));padding:18px 20px;border:1px solid var(--border-strong);border-radius:14px;background:var(--surface);color:var(--ink);box-shadow:0 16px 45px rgba(0,0,0,.16);animation:visitor-in .45s ease both}.visitor-popup__close{position:absolute;top:7px;right:9px;border:0;background:none;color:var(--ink-faint);font-size:20px;line-height:1;cursor:pointer}.visitor-popup__label,.visitor-popup__caption{display:block}.visitor-popup__label{font:600 .68rem/1.2 var(--font-mono);letter-spacing:.12em;color:var(--accent-ink)}.visitor-popup__number{display:block;margin:3px 0;font:700 2.4rem/1 var(--font-mono);letter-spacing:.04em}.visitor-popup__caption{font-size:.78rem;color:var(--ink-soft)}@keyframes visitor-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}@media(max-width:600px){.visitor-popup{right:16px;bottom:60px}}@media(prefers-reduced-motion:reduce){.visitor-popup{animation:none}}
