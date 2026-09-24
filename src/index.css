@@ -599,3 +599,21 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;opacity:.22;b
 
 
 .visitor-popup{position:fixed;right:24px;bottom:72px;z-index:50;width:min(280px,calc(100vw - 32px));padding:18px 20px;border:1px solid var(--border-strong);border-radius:14px;background:var(--surface);color:var(--ink);box-shadow:0 16px 45px rgba(0,0,0,.16);animation:visitor-in .45s ease both}.visitor-popup__close{position:absolute;top:7px;right:9px;border:0;background:none;color:var(--ink-faint);font-size:20px;line-height:1;cursor:pointer}.visitor-popup__label,.visitor-popup__caption{display:block}.visitor-popup__label{font:600 .68rem/1.2 var(--font-mono);letter-spacing:.12em;color:var(--accent-ink)}.visitor-popup__number{display:block;margin:3px 0;font:700 2.4rem/1 var(--font-mono);letter-spacing:.04em}.visitor-popup__caption{font-size:.78rem;color:var(--ink-soft)}@keyframes visitor-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}@media(max-width:600px){.visitor-popup{right:16px;bottom:60px}}@media(prefers-reduced-motion:reduce){.visitor-popup{animation:none}}
+/* Visitor popup */
+.visitor-popup{position:fixed;right:24px;bottom:72px;z-index:100;width:min(280px,calc(100vw - 32px));padding:18px 20px;border:1px solid var(--border-strong);border-radius:14px;background:var(--surface);color:var(--ink);box-shadow:0 16px 45px rgba(0,0,0,.16);animation:visitor-in .45s ease both}
+.visitor-popup--hiding{animation:visitor-out .45s ease both}
+.visitor-popup__close{position:absolute;top:7px;right:9px;border:0;background:none;color:var(--ink-faint);font-size:20px;line-height:1;cursor:pointer}
+.visitor-popup__label,.visitor-popup__caption{display:block}
+.visitor-popup__label{font:600 .68rem/1.2 var(--font-mono);letter-spacing:.12em;color:var(--accent-ink)}
+.visitor-popup__number{display:block;margin:3px 0;font:700 2.4rem/1 var(--font-mono);letter-spacing:.04em}
+.visitor-popup__caption{font-size:.78rem;color:var(--ink-soft)}
+@keyframes visitor-in{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes visitor-out{from{opacity:1;transform:translateY(0) scale(1)}to{opacity:0;transform:translateY(10px) scale(.98)}}
+html[dir='rtl'] .visitor-popup{right:auto;left:24px}
+html[dir='rtl'] .visitor-popup__close{right:auto;left:9px}
+html[dir='rtl'] .visitor-popup__label{letter-spacing:0;font-family:var(--font-arabic);font-weight:700}
+@media(max-width:600px){.visitor-popup{right:16px;left:auto;bottom:60px}html[dir='rtl'] .visitor-popup{right:auto;left:16px}}
+@media(prefers-reduced-motion:reduce){.visitor-popup,.visitor-popup--hiding{animation:none}}
+/* Reveal must never leave content permanently invisible if the observer is unavailable. */
+.reveal-ready [data-reveal]{opacity:0;transform:translateY(18px)}
+.reveal-ready [data-reveal].is-visible{opacity:1;transform:translateY(0)}
