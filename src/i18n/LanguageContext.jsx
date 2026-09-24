@@ -1,23 +1,24 @@
 import { createContext, useContext, useEffect, useState } from 'react'
-import { content, languages } from './content'
+import en from './en'
+import ar from './ar'
 
+const translations = { en, ar }
 const LanguageContext = createContext(null)
 
 export function LanguageProvider({ children }) {
   const [lang, setLang] = useState(() => {
     try { return localStorage.getItem('portfolio-lang') || 'en' } catch { return 'en' }
   })
-  const t = content[lang] || content.en
+  const t = translations[lang] || translations.en
 
   useEffect(() => {
     document.documentElement.lang = lang
-    document.documentElement.dir = t.meta.dir
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr'
     try { localStorage.setItem('portfolio-lang', lang) } catch {}
-  }, [lang, t.meta.dir])
+  }, [lang])
 
-  const toggleLanguage = () => setLang(current => languages[(languages.indexOf(current) + 1) % languages.length])
-
-  return <LanguageContext.Provider value={{ lang, t, setLang, toggleLanguage }}>{children}</LanguageContext.Provider>
+  const toggleLanguage = () => setLang(v => v === 'en' ? 'ar' : 'en')
+  return <LanguageContext.Provider value={{ lang, t, toggleLanguage }}>{children}</LanguageContext.Provider>
 }
 
 export function useLanguage() {
