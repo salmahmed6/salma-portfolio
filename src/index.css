@@ -566,3 +566,33 @@ button:focus-visible {
   scrollbar-color: var(--border-strong) var(--bg);
   scrollbar-width: thin;
 }
+
+/* Personal theme system: midnight-black by default, warm paper light mode. */
+:root[data-theme='light'] {
+  --bg:#f5f2eb; --surface:#fffdf8; --surface-sunken:#ece8df; --border:#ddd8cc; --border-strong:#b9b1a2;
+  --ink:#171716; --ink-soft:#5f5b52; --ink-faint:#8a8478;
+  --accent:#11110f; --accent-ink:#22221e; --accent-tint:#e8e3d8;
+  --status:#26734a; --status-tint:#e3f0e8; --signal:#9a6418; --signal-tint:#f4ead8;
+  --code-bg:#171716; --code-ink:#f3efe6; --code-accent:#c9bda9; --code-status:#7ad49d; --code-faint:#a79d8c;
+  color-scheme:light;
+}
+:root[data-theme='dark'] { --bg:#090909; --surface:#111111; --surface-sunken:#0c0c0c; --border:#242424; --border-strong:#3a3a3a; --ink:#f1f0eb; --ink-soft:#aaa79f; --ink-faint:#66635d; --accent:#151515; --accent-ink:#d6d0c4; --accent-tint:#24221e; --status:#75d69b; --status-tint:#102219; --signal:#e0ad60; --signal-tint:#261d0f; --code-bg:#050505; --code-ink:#e5e1d7; --code-accent:#c9bda9; --code-status:#75d69b; --code-faint:#8d887e; color-scheme:dark; }
+html,body{background:var(--bg);color:var(--ink);transition:background .25s ease,color .25s ease}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;opacity:.22;background-image:radial-gradient(rgba(255,255,255,.08) .6px,transparent .6px);background-size:5px 5px;mix-blend-mode:soft-light;z-index:-1}
+
+
+/* Education + personal visual language */
+.education__head{margin-bottom:var(--space-4)}
+.education__grid{display:flex;flex-direction:column;border-top:1px solid var(--border)}
+.education__card{display:grid;grid-template-columns:150px 1fr;gap:var(--space-4);padding-block:1.5rem;border-bottom:1px solid var(--border)}
+.education__year{color:var(--ink-faint);font-size:.8rem}
+.education__top{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start}
+.education__type{display:block;color:var(--accent-ink);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.45rem}
+.education__top h3{font-size:1.22rem;margin-bottom:.25rem}
+.education__institution,.education__details{color:var(--ink-soft)}
+.education__details{max-width:64ch;margin-top:.85rem;line-height:1.7}
+.education__tags{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1rem}
+@media(max-width:700px){.education__card{grid-template-columns:1fr;gap:.65rem}.education__top{flex-direction:column}.education__grade{align-self:flex-start}}
+
+:root[data-theme='light'] .nav__panel{background:rgba(245,242,235,.97)}
+:root[data-theme='dark'] .nav__panel{background:rgba(9,9,9,.97)}
