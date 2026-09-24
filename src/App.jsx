@@ -19,13 +19,26 @@ function VisitorPopup({ number }) {
   const [number, setNumber] = useState(null)
   const [visible, setVisible] = useState(false)
   const [hiding, setHiding] = useState(false)
+  const [displayNumber, setDisplayNumber] = useState(0)
 
   useEffect(() => {
     if (number === null) return
+    setDisplayNumber(0)
+    const duration = 1100
+    const start = performance.now()
+    let frame
+    const animate = (now) => {
+      const progress = Math.min((now - start) / duration, 1)
+      const eased = 1 - Math.pow(1 - progress, 3)
+      setDisplayNumber(Math.round(number * eased))
+      if (progress < 1) frame = requestAnimationFrame(animate)
+    }
+    frame = requestAnimationFrame(animate)
     const showTimer = window.setTimeout(() => setVisible(true), 900)
     const hideTimer = window.setTimeout(() => setHiding(true), 6000)
     const removeTimer = window.setTimeout(() => setVisible(false), 6450)
     return () => {
+      cancelAnimationFrame(frame)
       window.clearTimeout(showTimer)
       window.clearTimeout(hideTimer)
       window.clearTimeout(removeTimer)
@@ -43,7 +56,7 @@ function VisitorPopup({ number }) {
     <aside className={\`visitor-popup \${hiding ? 'visitor-popup--hiding' : ''}\`} role="status" aria-live="polite">
       <button className="visitor-popup__close" type="button" onClick={close} aria-label={v.close}>×</button>
       <span className="visitor-popup__label">{v.label}</span>
-      <strong className="visitor-popup__number">{String(number).padStart(3, '0')}</strong>
+      <strong className="visitor-popup__number">{String(displayNumber).padStart(3, '0')}</strong>
       <span className="visitor-popup__caption">{v.caption}</span>
     </aside>
   )
