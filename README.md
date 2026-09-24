@@ -1,8 +1,8 @@
 # Salma Ahmed — Portfolio
 
 A bilingual (English/Arabic, full RTL support) personal portfolio built with React + Vite.
-Light, minimal, technical design — monospace accents, a live Cairo-time status bar, and a
-typewriter-style terminal in the hero.
+Light, minimal, technical design — monospace accents, a live status bar, and a persistent
+server-side visitor counter.
 
 ## Run it locally
 
@@ -56,23 +56,39 @@ The hero currently uses `/public/avatar-placeholder.svg` as a placeholder.
 
 ## Editing content
 
-Everything text-related — English and Arabic — lives in one file:
+English and Arabic translations are split into dedicated files:
 
-```
-src/i18n/content.js
+```text
+src/i18n/en.js
+src/i18n/ar.js
+src/i18n/LanguageContext.jsx
 ```
 
-Each section (hero, about, experience, journey, projects, skills, contact) has an `en` and
-`ar` version with the same shape. Edit the strings directly; no other file needs to change
-for content updates. Arrays (experience items, project cards, journey log entries) can be
-reordered, added to, or trimmed freely.
+Keep the same translation keys in both language files so the RTL/LTR switch remains complete.
+
+## Visitor counter
+
+The portfolio uses a Vercel Function at `/api/visitor` and persistent Redis storage. A
+server-side anonymous cookie identifies a browser for one year, while the total visitor count
+is stored centrally instead of in `localStorage`. The popup animates from `000` to the real total,
+then disappears; the total remains visible in the bottom status bar.
+
+Before deploying, configure these Vercel environment variables:
+
+```text
+UPSTASH_REDIS_REST_URL
+UPSTASH_REDIS_REST_TOKEN
+```
+
+Create an Upstash Redis database and copy its REST URL/token into the Vercel project settings.
+Redeploy after adding the variables. Never put the Redis token in frontend code or commit it to Git.
 
 ## Project structure
 
 ```
 src/
   components/     One file per section (Hero, About, Experience, Journey, Projects, Skills, Contact...)
-  i18n/           content.js (all EN/AR text) + LanguageContext.jsx (toggle + RTL logic)
+  i18n/           en.js + ar.js (all EN/AR text) + LanguageContext.jsx (toggle + RTL logic)
   hooks/          useClock (status bar), useReveal (scroll-in animations)
   index.css       Design tokens (colors, type, spacing) + shared utility classes
 public/
@@ -86,5 +102,5 @@ public/
 - All motion respects `prefers-reduced-motion`.
 - The GitHub/npm/App Store links in the Projects section are pulled live from your public
   profiles as of when this was built — double check they still resolve before you ship.
-- No backend, no build secrets, no environment variables — it's a fully static site, so any
-  free static host works (Vercel, Netlify, GitHub Pages, Cloudflare Pages), not just Vercel.
+- The visitor counter requires a Vercel Function and Upstash Redis environment variables, so the
+  production deployment should remain on a host that supports the `/api/visitor` function.
