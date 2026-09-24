@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useLanguage } from './i18n/LanguageContext'
 import Nav from './components/Nav'
 import StatusBar from './components/StatusBar'
 import Hero from './components/Hero'
@@ -13,32 +14,56 @@ import Footer from './components/Footer'
 import { useReveal } from './hooks/useReveal'
 
 const VISITOR_KEY = 'salma-portfolio-visitor-count'
+const VISITOR_SESSION_KEY = 'salma-portfolio-visitor-session'
 
 function VisitorPopup() {
+  const { t } = useLanguage()
+  const v = t.visitor
   const [number, setNumber] = useState(null)
   const [visible, setVisible] = useState(false)
+  const [hiding, setHiding] = useState(false)
 
   useEffect(() => {
+    let next = 1
     try {
-      const current = Number(localStorage.getItem(VISITOR_KEY) || '0')
-      const next = Math.max(1, current + 1)
-      localStorage.setItem(VISITOR_KEY, String(next))
-      setNumber(next)
+      const countedThisSession = sessionStorage.getItem(VISITOR_SESSION_KEY)
+      if (!countedThisSession) {
+        const current = Number(localStorage.getItem(VISITOR_KEY) || '0')
+        next = Math.max(1, current + 1)
+        localStorage.setItem(VISITOR_KEY, String(next))
+        sessionStorage.setItem(VISITOR_SESSION_KEY, '1')
+      } else {
+        next = Math.max(1, Number(localStorage.getItem(VISITOR_KEY) || '1'))
+      }
     } catch {
-      setNumber(1)
+      next = 1
     }
-    const timer = window.setTimeout(() => setVisible(true), 900)
-    return () => window.clearTimeout(timer)
+
+    setNumber(next)
+    const showTimer = window.setTimeout(() => setVisible(true), 900)
+    const hideTimer = window.setTimeout(() => setHiding(true), 6000)
+    const removeTimer = window.setTimeout(() => setVisible(false), 6450)
+
+    return () => {
+      window.clearTimeout(showTimer)
+      window.clearTimeout(hideTimer)
+      window.clearTimeout(removeTimer)
+    }
   }, [])
+
+  const close = () => {
+    setHiding(true)
+    window.setTimeout(() => setVisible(false), 450)
+  }
 
   if (!visible || number === null) return null
 
   return (
-    <aside className="visitor-popup" role="status" aria-live="polite">
-      <button className="visitor-popup__close" type="button" onClick={() => setVisible(false)} aria-label="Close">×</button>
-      <span className="visitor-popup__label">YOU ARE VISITOR</span>
+    <aside className={`visitor-popup ${hiding ? 'visitor-popup--hiding' : ''}`} role="status" aria-live="polite">
+      <button className="visitor-popup__close" type="button" onClick={close} aria-label={v.close}>×</button>
+      <span className="visitor-popup__label">{v.label}</span>
       <strong className="visitor-popup__number">{String(number).padStart(3, '0')}</strong>
-      <span className="visitor-popup__caption">welcome to my corner of the internet.</span>
+      <span className="visitor-popup__caption">{v.caption}</span>
     </aside>
   )
 }
