@@ -16,7 +16,6 @@ import { useReveal } from './hooks/useReveal'
 function VisitorPopup({ number }) {
   const { t } = useLanguage()
   const v = t.visitor
-  const [number, setNumber] = useState(null)
   const [visible, setVisible] = useState(false)
   const [hiding, setHiding] = useState(false)
   const [displayNumber, setDisplayNumber] = useState(0)
