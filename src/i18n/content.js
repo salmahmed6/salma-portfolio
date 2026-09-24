@@ -21,7 +21,7 @@ export const content = {
     hero: {
       eyebrow: 'Available for new opportunities',
       name: 'Salma Ahmed',
-      role: 'Software Engineer Backend Developer',
+      role: 'Software Engineer · Backend Developer',
       tagline:
         "From a blank repo to a production-ready product — I design the architecture, build the backend, connect the pieces, and make it ready to scale.",
       terminal: [
