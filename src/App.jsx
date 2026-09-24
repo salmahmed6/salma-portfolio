@@ -13,30 +13,12 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import { useReveal } from './hooks/useReveal'
 
-function VisitorPopup() {
+function VisitorPopup({ number }) {
   const { t } = useLanguage()
   const v = t.visitor
   const [number, setNumber] = useState(null)
   const [visible, setVisible] = useState(false)
   const [hiding, setHiding] = useState(false)
-
-  useEffect(() => {
-    let cancelled = false
-
-    fetch('/api/visitor', { credentials: 'include' })
-      .then((response) => {
-        if (!response.ok) throw new Error('Visitor counter unavailable')
-        return response.json()
-      })
-      .then(({ count }) => {
-        if (!cancelled) setNumber(Number(count) || 0)
-      })
-      .catch(() => {
-        if (!cancelled) setNumber(null)
-      })
-
-    return () => { cancelled = true }
-  }, [])
 
   useEffect(() => {
     if (number === null) return
@@ -88,7 +70,7 @@ export default function App() {
       <Nav theme={theme} onToggleTheme={() => setTheme(v => v === 'dark' ? 'light' : 'dark')} />
       <main><Hero /><About /><Education /><Experience /><Journey /><Projects /><Skills /><Contact /></main>
       <Footer /><StatusBar visitorNumber={visitorNumber} />
-      <VisitorPopup />
+      <VisitorPopup number={visitorNumber} />
     </div>
   )
 }
