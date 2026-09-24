@@ -35,6 +35,7 @@ const en = {
   ]},
   contact:{eyebrow:'Contact',heading:"Let's talk",text:'Open to backend and full-stack opportunities.',email:'salmaahmedali924@gmail.com',emailCta:'Send an email',links:[{label:'LinkedIn',href:'https://www.linkedin.com/in/salma-ahmed-988880221/'},{label:'GitHub',href:'https://github.com/salmahmed6'},{label:'X / Twitter',href:'https://x.com/Saloma8_'}]},
   statusBar:{prompt:'status:',status:'available for opportunities',locationLabel:'EGYPT · REMOTE'},
+  visitor:{label:'YOU ARE VISITOR',caption:'welcome to my corner of the internet.',close:'Close'},
   footer:{text:'Designed & built by Salma Ahmed',backToTop:'Back to top'}
 }
 export default en
