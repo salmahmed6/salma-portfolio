@@ -6,6 +6,7 @@ export const content = {
     },
     nav: {
       about: 'About',
+      education: 'Education',
       experience: 'Experience',
       journey: 'Journey',
       projects: 'Projects',
@@ -40,6 +41,8 @@ export const content = {
         "Outside product work, I'm currently deepening my ML fundamentals through an AWS-sponsored AI & ML Scholars program.",
       ],
     },
+
+    education: { eyebrow: 'Education', heading: 'The foundation behind the builder', items: [{ type: 'B.Sc.', degree: 'Computer Science / Artificial Intelligence', institution: 'Faculty of Computers and Artificial Intelligence, Matrouh University', period: '2020 — 2024', grade: 'Very Good · GPA 3.3', details: 'Graduated in 2024. My graduation project, an Object Following Car built with ESP32-CAM and Arduino, received an A+ — an early reminder that I learn best by building real things.', highlights: ['A+ Graduation Project','GPA 3.3','ECPC 2021'] }] },
     experience: {
       eyebrow: 'Experience',
       heading: 'Where the systems got real',
@@ -271,6 +274,7 @@ export const content = {
     },
     nav: {
       about: 'نبذة',
+      education: 'التعليم',
       experience: 'الخبرات',
       journey: 'رحلتي',
       projects: 'المشاريع',
@@ -305,6 +309,8 @@ export const content = {
         'إلى جانب العمل على المنتجات، أصون حزمة مصادقة مفتوحة المصدر على npm، وأعمّق حاليًا أساسياتي في تعلّم الآلة عبر برنامج AWS AI & ML Scholars المدعوم من AWS.',
       ],
     },
+
+    education: { eyebrow: 'التعليم', heading: 'الأساس الذي بدأت منه الرحلة', items: [{ type: 'بكالوريوس', degree: 'علوم الحاسب والذكاء الاصطناعي', institution: 'كلية الحاسبات والذكاء الاصطناعي، جامعة مطروح', period: '2020 — 2024', grade: 'جيد جدًا · GPA 3.3', details: 'تخرجت عام 2024. حصل مشروع التخرج، سيارة تتبع الأجسام باستخدام ESP32-CAM وArduino، على A+ — وكان من أوائل المشاريع التي أكدت لي أنني أتعلم أفضل عندما أبني شيئًا حقيقيًا.', highlights: ['مشروع تخرج A+','GPA 3.3','ECPC 2021'] }] },
     experience: {
       eyebrow: 'الخبرات',
       heading: 'حيث أصبحت الأنظمة حقيقية',
