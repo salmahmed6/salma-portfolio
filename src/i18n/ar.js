@@ -35,6 +35,7 @@ const ar = {
   ]},
   contact:{eyebrow:'تواصل',heading:'لنتحدث',text:'متاحة لأدوار باك-إند أو فل-ستاك.',email:'salmaahmedali924@gmail.com',emailCta:'أرسل بريدًا إلكترونيًا',links:[{label:'LinkedIn',href:'https://www.linkedin.com/in/salma-ahmed-988880221/'},{label:'GitHub',href:'https://github.com/salmahmed6'},{label:'X / Twitter',href:'https://x.com/Saloma8_'}]},
   statusBar:{prompt:'الحالة:',status:'متاحة لفرص جديدة',locationLabel:'مصر · عن بُعد'},
+  visitor:{label:'أنت الزائر رقم',caption:'أهلًا بك في مساحتي على الإنترنت.',close:'إغلاق'},
   footer:{text:'تصميم وبناء سلمى أحمد',backToTop:'العودة للأعلى'}
 }
 export default ar
