@@ -34,6 +34,7 @@ const ar = {
     {title:'اللغات',items:['JavaScript','TypeScript','Python','PHP','SQL','C++']},{title:'الواجهة الخلفية',items:['Node.js','Express.js','NestJS','Laravel','REST APIs','WebSockets','JWT','OAuth2','RBAC']},{title:'الواجهة الأمامية',items:['React','Next.js','Vite','Tailwind CSS','HTML','CSS','React Query','Zustand','Zod']},{title:'قواعد البيانات',items:['PostgreSQL','MySQL','MongoDB','Redis','BullMQ','Prisma','TypeORM','Eloquent ORM']},{title:'DevOps والبنية التحتية',items:['Docker','Git','GitHub Actions','CI/CD','PM2','AWS','Linux','Cloudinary']},{title:'الذكاء الاصطناعي / الأتمتة',items:['OpenAI API','Google Gemini','AWS AI & ML','ML fundamentals','MLOps','n8n','Workflow automation']},{title:'الهندسة والممارسات',items:['Multi-tenancy','SaaS architecture','System design','Payment integrations','Agile','API design','HMAC webhooks']}
   ]},
   contact:{eyebrow:'تواصل',heading:'لنتحدث',text:'متاحة لأدوار باك-إند أو فل-ستاك.',email:'salmaahmedali924@gmail.com',emailCta:'أرسل بريدًا إلكترونيًا',links:[{label:'LinkedIn',href:'https://www.linkedin.com/in/salma-ahmed-988880221/'},{label:'GitHub',href:'https://github.com/salmahmed6'},{label:'X / Twitter',href:'https://x.com/Saloma8_'}]},
+  statusBar:{prompt:'الحالة:',status:'متاحة لفرص جديدة',locationLabel:'مصر · عن بُعد'},
   footer:{text:'تصميم وبناء سلمى أحمد',backToTop:'العودة للأعلى'}
 }
 export default ar
